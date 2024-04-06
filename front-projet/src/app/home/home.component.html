@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="home-container">
+    <div class="all-movies">
+        <div class="trending-movies">
+            <h4>Films populaires aujourd'hui</h4>   
+            <div class="movie-container">
+                <div *ngFor="let movie of movies" class="movie">
+                    <div class="poster">
+                        <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+                      </div>
+                    <div class="details">
+                      <h2>{{ movie.title }} {{ movie.name }}</h2>
+                      <p>{{ movie.overview }}</p>
+                    </div>
+                    <div class="nav">
+                      <img src="../../assets/coeur.png">
+                    </div>
+                  </div>
+                  
+            </div>
+
+        </div>
+    </div>
+</div>

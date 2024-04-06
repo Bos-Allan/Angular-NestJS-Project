@@ -1,0 +1,26 @@
+.header{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(148, 16, 148);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nomapp{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.favoris{
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+.icon{
+    height: 30px;
+}
