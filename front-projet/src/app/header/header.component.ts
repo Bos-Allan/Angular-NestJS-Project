@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +17,11 @@ export class HeaderComponent implements OnInit {
   }
 
   goToFavoris(){
-    this.router.navigate(['favoris'])
-    // const navigationExtras: NavigationExtras = {state: {reload: true}};
-    // this.router.navigate(['favoris'], navigationExtras).then(() => {
-    //   window.location.reload();
-    // });
+    //this.router.navigate(['favoris'])
+    const navigationExtras: NavigationExtras = {state: {reload: true}};
+    this.router.navigate(['favoris'], navigationExtras).then(() => {
+      window.location.reload();
+    });
   }
 
 }
