@@ -24,3 +24,48 @@
 .icon{
     height: 30px;
 }
+
+.btnrechercher {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2; /* Couleur de fond */
+    border: 1px solid #ccc; /* Bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 5px 10px; /* Espacement intérieur */
+}
+  
+.btnrechercher .loupe {
+    height: 20px; 
+    margin-right: 5px;
+}
+  
+.btnrechercher input[type="text"] {
+    border: none; 
+    outline: none; 
+    flex: 1; 
+    background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column; 
+      height: auto;
+    }
+  
+    .nomapp {
+      margin-left: 0;
+      margin-top: 10px; 
+      margin-bottom: 10px;
+    }
+  
+    .favoris {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .btnrechercher {
+      width:80%; /* Occupe toute la largeur */
+      margin-bottom: 10px; /* Espacement entre chaque élément */
+    }
+}
+  

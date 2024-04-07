@@ -5,11 +5,6 @@ h4{
     padding-left: 10px;
 }
 
-.nav img{
-    max-height: 20px;
-    max-width: 20px;
-}
-
 .movie-container {
     display: flex;
     flex-wrap: wrap;
@@ -29,7 +24,7 @@ h4{
 }
   
 .movie .details {
-    flex: 1; /* Les détails occupent tout l'espace restant */
+    flex: 1;  /*Les détails occupent tout l'espace restant */
 }
   
 .movie h2 {
@@ -43,6 +38,13 @@ h4{
     overflow-y: auto; 
 }
 
+.nav img{
+  margin-top: 10%;
+  max-height: 20px;
+  max-width: 20px;
+  cursor: pointer;
+}
+
 /*pour l'aspect responsive*/
 @media screen and (max-width: 768px) { 
     .movie {
@@ -50,7 +52,7 @@ h4{
       display: flex;
     }
     .movie img {
-      width: 50%; 
+      width: 150px; 
     }
     .movie .details {
       width: 50%;
