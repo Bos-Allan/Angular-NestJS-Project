@@ -28,10 +28,10 @@
 .btnrechercher {
     display: flex;
     align-items: center;
-    background-color: #f2f2f2; /* Couleur de fond */
-    border: 1px solid #ccc; /* Bordure */
-    border-radius: 5px; /* Coins arrondis */
-    padding: 5px 10px; /* Espacement intérieur */
+    background-color: #f2f2f2; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    padding: 5px 10px; 
 }
   
 .btnrechercher .loupe {
@@ -64,8 +64,8 @@
     }
   
     .btnrechercher {
-      width:80%; /* Occupe toute la largeur */
-      margin-bottom: 10px; /* Espacement entre chaque élément */
+      width:80%; 
+      margin-bottom: 10px; 
     }
 }
   
