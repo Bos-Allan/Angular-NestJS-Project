@@ -15,6 +15,13 @@ h4{
     margin-bottom: 20px;
     background-color: rgb(231, 231, 231);
     border: 1px solid black;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.movie:hover{
+  background-color: #e7e7e7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
   
 .movie img {
