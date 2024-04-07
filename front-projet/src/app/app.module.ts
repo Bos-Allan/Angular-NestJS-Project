@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupmovieComponent } from './popupmovie/popupmovie.component';
+import { FavorisComponent } from './favoris/favoris.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PopupmovieComponent } from './popupmovie/popupmovie.component';
     HomeComponent,
     HeaderComponent,
     PopupmovieComponent,
+    FavorisComponent,
   ],
   imports: [
     BrowserModule,

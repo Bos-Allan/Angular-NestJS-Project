@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit {
 
   goToFavoris(){
     this.router.navigate(['favoris'])
+    // const navigationExtras: NavigationExtras = {state: {reload: true}};
+    // this.router.navigate(['favoris'], navigationExtras).then(() => {
+    //   window.location.reload();
+    // });
   }
 
 }

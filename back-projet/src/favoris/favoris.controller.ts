@@ -16,7 +16,7 @@ export class FavorisController {
 
 
     @Post() 
-    create(@Body() createFavorisDto: CreateFavoriDto ): Observable<Favoris>{
+    create(@Body() createFavorisDto: CreateFavoriDto ): Observable<Favoris>{    
         return this._favorisService.create(createFavorisDto)
     }
 

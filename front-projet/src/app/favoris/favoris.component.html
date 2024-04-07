@@ -1,0 +1,45 @@
+
+<app-header></app-header>
+<div class="home-container">
+    <div class="all-movies">
+        <div class="trending-movies">
+            <h4>Films</h4>   
+            <div class="movie-container">
+                <div *ngFor="let movie of movies" class="movie">
+                    <div class="poster">
+                        <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+                      </div>
+                    <div class="details">
+                      <h2>{{ movie.title }} {{ movie.name }}</h2>
+                      <p>{{ movie.overview }}</p>
+                    </div>
+                    <div class="nav">
+                      <img src="../../assets/coeur.png" (click)="deleteFavoris(getFavorisId(movie.id))">
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="home-container">
+  <div class="all-series">
+      <div class="trending-movies">
+          <h4>Series</h4>   
+          <div class="movie-container">
+              <div *ngFor="let serie of series" class="movie">
+                  <div class="poster">
+                      <img *ngIf="serie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + serie.poster_path" alt="{{ serie.title }}">
+                    </div>
+                  <div class="details">
+                    <h2>{{ serie.title }} {{ serie.name }}</h2>
+                    <p>{{ serie.overview }}</p>
+                  </div>
+                  <div class="nav">
+                    <img src="../../assets/coeur.png" (click)="deleteFavoris(getFavorisId(serie.id))">
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div>
