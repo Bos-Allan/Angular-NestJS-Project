@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
   searchMovieName(): void {
     if (this.searchQuery.trim() !== '') {
-      this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${this.searchQuery}&api_key=fd12b26e656b74c2cdee344670e2e913`)
+      this.http.get<any>(`https://api.themoviedb.org/3/search/multi?query=${this.searchQuery}&api_key=fd12b26e656b74c2cdee344670e2e913`)
         .subscribe(response => {
           if (response.results && response.results.length > 0) {
             this.searchService.updateSearchResults(response.results);

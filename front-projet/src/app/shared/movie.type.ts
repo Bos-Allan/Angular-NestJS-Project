@@ -5,5 +5,6 @@ export type Movie = {
     overview: string;
     name: string;
     media_type: string;
+    isFavoris: boolean;
   }
   

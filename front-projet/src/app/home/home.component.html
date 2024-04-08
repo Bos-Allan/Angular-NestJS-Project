@@ -13,7 +13,7 @@
                       <p>{{ movie.overview }}</p>
                     </div>
                     <div class="nav">
-                      <img src="../../assets/coeurvide.png" (click)="addFavoris(movie.id)">
+                      <img [src]="movie.isFavoris ? '../../assets/coeur.png' : '../../assets/coeurvide.png'" (click)="!movie.isFavoris ? addFavoris(movie.id) : deleteFavoris(getFavorisId(movie.id))">
                     </div>
                   </div>
             </div>
