@@ -26,8 +26,7 @@ export class FavorisComponent {
 
 
 
-  searchMovie() {
-    
+  searchMovie() { 
     this.getFavoris();
     for (let i = 0; i < this.tabIdFavoris.length; i++) {
       if(this.favoris[i].isMovie === true){

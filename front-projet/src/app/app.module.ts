@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//Réinstaller  angular/material et angular/cdk dans la dernière version
-import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ import { FavorisComponent } from './favoris/favoris.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    /*MatDialogModule*/
+    FormsModule
   ],
   providers: [
     provideClientHydration()

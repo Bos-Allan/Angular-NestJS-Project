@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../shared/movie.type';
-
-//shared pour voir le type de movie
-
+import { SearchService } from '../header/header.service';
 
 @Component({
   selector: 'app-home',
@@ -13,20 +11,12 @@ import { Movie } from '../shared/movie.type';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private searchService: SearchService) {}
 
   ngOnInit(): void {
-    this.searchMovie();
-  }
-
-  searchMovie() {
-    this.http.get<any>(`https://api.themoviedb.org/3/trending/all/day?api_key=fd12b26e656b74c2cdee344670e2e913`)
-      .subscribe(response => {
-        if (response.results && response.results.length > 0) {
-          this.movies = response.results; 
-        }
-      });
-
+    this.searchService.searchResults$.subscribe(results => {
+      this.movies = results;
+    });
   }
 
   addFavoris(id: string) {
