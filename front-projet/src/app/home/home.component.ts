@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Movie } from '../shared/movie.type';
 import { SearchService } from '../header/header.service';
-import { Favoris } from '../shared/favoris.type';
+import { Favoris } from '../shared/favoris.type'; 
 
 @Component({
   selector: 'app-home',
@@ -12,26 +12,78 @@ import { Favoris } from '../shared/favoris.type';
 })
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
+  moviesRecherche: Movie[] = [];
   favoris: Favoris[] = [];
+  groupsMovie: any[] = [];
+  titre = ["Film et series populaires aujourd'hui", "Film d'action", "A Venir", "Les mieux notés"];
+  groupsofGroup: any[] = [];
 
   constructor(private router: Router, private http: HttpClient, private searchService: SearchService) {}
 
   ngOnInit(): void {
+
+    this.searchMovies('trending/all/day');
+    this.groupMovie(this.groupsMovie);
+    this.groupsofGroup.push(this.groupsMovie);
+    this.groupsMovie = [];
+    this.searchMovies('movie/now_playing');
+    this.groupMovie(this.groupsMovie);
+    this.groupsofGroup.push(this.groupsMovie);
+    this.groupsMovie = [];
+    this.searchMovies('movie/upcoming');
+    this.groupMovie(this.groupsMovie);
+    this.groupsofGroup.push(this.groupsMovie);
+    this.groupsMovie = [];
+    this.searchMovies('movie/top_rated');
+    this.groupMovie(this.groupsMovie);
+    this.groupsofGroup.push(this.groupsMovie);
+    this.groupsMovie = [];
+
     this.searchService.searchResults$.subscribe(results => {
       this.movies = results;
-      this.getFavoris();
-      
-    
     });
-
 
   }
 
+  searchMovies(url: string) {
+    this.http.get<any>(`https://api.themoviedb.org/3/${url}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`)
+      .subscribe(response => {
+        if (response.results && response.results.length > 0) {
+          this.movies = response.results;
+          console.log(this.movies);
+          
+        }
+      });
+  }
 
-  
+
+  groupMovie(moviesGroup: any[]){
+    
+    let index = 0;
+    let tab = [];
+ 
+    for (let i = 0; i < this.movies.length ; i++) {
+
+      
+      if(index < 6 ){        
+        tab.push(this.movies[i]);
+        index++;
+      }else{
+        index = 0;
+        tab.push(this.movies[i]);
+        moviesGroup.push(tab);
+        tab = [];
+      }
+    }
+    moviesGroup.push(tab);
+
+    this.getFavoris();
+    
+  }
+
   //a voir comment tu veux gerer ca et la route qu'il faut mettre
-  goToDetail(id:string) {
-    this.router.navigate(['favoris']);
+  goToDetail(id: string, type: string) {
+    this.router.navigate(['/detail', id, type]); // Utilisez 'navigate' avec les paramètres requis
   }
 
 
@@ -54,6 +106,7 @@ export class HomeComponent implements OnInit {
   addFavoris(id: string) {
     let idfavoris = Math.random().toString(36).substring(2, 15);
     const movie = this.movies.find(m => m.id === id);
+    console.log(movie?.media_type);
     
     this.http.post<any>(`http://localhost:3000/favoris`, { id_favoris: idfavoris, id_film: id , isMovie: movie!.media_type === "movie" ? true : false})
       .subscribe();
@@ -83,5 +136,6 @@ export class HomeComponent implements OnInit {
     location.reload();
 
   }
+ 
 
 }

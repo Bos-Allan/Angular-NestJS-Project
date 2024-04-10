@@ -51,6 +51,26 @@ h4{
 }
 
 
+
+.carousel-control-prev, .carousel-control-next {
+  width: auto;
+  height: auto;
+  background: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+  left: -30px;
+  background-color: black;
+}
+
+.carousel-control-next {
+  right: -30px;
+  background-color: black;
+}
+
 /*
 @media screen and (max-width: 768px) { 
     .movie {

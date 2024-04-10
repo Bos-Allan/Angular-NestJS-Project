@@ -1,45 +1,40 @@
-
 <app-header></app-header>
 <div class="home-container">
-    <div class="all-movies">
+    <div class="all-movies container">
         <div class="trending-movies">
-            <h4>Films</h4>   
+            <h4 class=" p-2 h5">Films</h4>   
             <div class="movie-container">
-                <div *ngFor="let movie of movies" class="movie">
-                    <div class="poster">
-                        <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
-                      </div>
-                    <div class="details">
-                      <h2>{{ movie.title }} {{ movie.name }}</h2>
-                      <p>{{ movie.overview }}</p>
-                    </div>
-                    <div class="nav">
-                      <img src="../../assets/coeur.png" (click)="deleteFavoris(getFavorisId(movie.id))">
-                    </div>
+              <div class="movie-container">
+               <div *ngFor="let movie of movies" class="movie" >  <!--(click)="goToDetail(movie.id) -->
+                    <div class="poster" style="position: relative;">
+                      <img class="rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+                      
+                      <i (click)="deleteFavoris(getFavorisId(movie.id))" class="bi bi-heart-fill favoris"></i>
                   </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="home-container">
-  <div class="all-series">
+  <div class="all-movies container">
       <div class="trending-movies">
-          <h4>Series</h4>   
+          <h4 class=" p-2 h5">Series</h4>   
           <div class="movie-container">
-              <div *ngFor="let serie of series" class="movie">
-                  <div class="poster">
-                      <img *ngIf="serie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + serie.poster_path" alt="{{ serie.title }}">
-                    </div>
-                  <div class="details">
-                    <h2>{{ serie.title }} {{ serie.name }}</h2>
-                    <p>{{ serie.overview }}</p>
-                  </div>
-                  <div class="nav">
-                    <img src="../../assets/coeur.png" (click)="deleteFavoris(getFavorisId(serie.id))">
-                  </div>
+            <div class="movie-container">
+             <div *ngFor="let serie of series" class="movie" >  <!--(click)="goToDetail(movie.id) -->
+                  <div class="poster" style="position: relative;">
+                    <img class="rounded" *ngIf="serie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + serie.poster_path" alt="{{ serie.title }}">
+                    
+                    <i (click)="deleteFavoris(getFavorisId(serie.id))" class="bi bi-heart-fill favoris"></i>
                 </div>
+              </div>
+          </div>
           </div>
       </div>
   </div>
 </div>
+
+

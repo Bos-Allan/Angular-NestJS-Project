@@ -7,11 +7,16 @@ import { Movie } from '../shared/movie.type';
 })
 export class SearchService {
   private searchResultsSubject = new BehaviorSubject<Movie[]>([]);
+  private searchResultsSubjectCinema = new BehaviorSubject<Movie[]>([]);
   searchResults$ = this.searchResultsSubject.asObservable();
 
   constructor() {}
 
   updateSearchResults(results: Movie[]) {
     this.searchResultsSubject.next(results);
+  }
+
+  updateSearchResultsCinema(results: Movie[]) {
+    this.searchResultsSubjectCinema.next(results);
   }
 }
