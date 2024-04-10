@@ -5,7 +5,7 @@
             <h4 class=" p-2 h5">Films et Series populaires aujourd'hui</h4>   
             <div class="movie-container">
               <div class="movie-container">
-                <div *ngFor="let movie of movies" class="movie" (click)="goToDetail(movie.id)">
+                <div *ngFor="let movie of movies" class="movie" (click)="goToDetail(movie.id, movie.media_type)">
                     <div class="poster" style="position: relative;">
                       <img class="rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
                       
@@ -18,8 +18,6 @@
     </div>
 </div>
 
-
-
 <app-header></app-header>
 <div class="home-container">
     <div class="all-movies container">
@@ -29,7 +27,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="d-flex flex-nowrap overflow-auto">
-                            <div *ngFor="let movie of movies; let i = index" class="movie" (click)="goToDetail(movie.id)">
+                            <div *ngFor="let movie of movies; let i = index" class="movie" (click)="goToDetail(movie.id, movie.media_type)">
                                 <div class="poster" style="position: relative;">
                                     <img class="rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
                                     <i (click)="!movie.isFavoris ? addFavoris(movie.id) : deleteFavoris(getFavorisId(movie.id))" [class]="movie.isFavoris ? 'bi bi-heart-fill favoris' : 'bi bi-heart favoris' " ></i>

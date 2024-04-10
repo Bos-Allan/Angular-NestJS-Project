@@ -30,8 +30,8 @@ export class HomeComponent implements OnInit {
 
   
   //a voir comment tu veux gerer ca et la route qu'il faut mettre
-  goToDetail(id:string) {
-    this.router.navigate(['favoris']);
+  goToDetail(id: string, type: string) {
+    this.router.navigate(['/detail', id, type]); // Utilisez 'navigate' avec les paramètres requis
   }
 
 
@@ -83,5 +83,4 @@ export class HomeComponent implements OnInit {
     location.reload();
 
   }
-
 }

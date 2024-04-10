@@ -9,16 +9,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PopupmovieComponent } from './popupmovie/popupmovie.component';
-import { FavorisComponent } from './favoris/favoris.component';
+import { FavorisComponent } from './favoris/favoris.component'
+import { DetailComponent, FillArrayPipe } from './detail/detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    PopupmovieComponent,
     FavorisComponent,
+    DetailComponent,
+    FillArrayPipe
   ],
   imports: [
     BrowserModule,

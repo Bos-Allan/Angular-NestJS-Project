@@ -1,0 +1,43 @@
+.body{
+    display: flex;
+    padding: 10px;
+}
+
+.img{
+    border-radius: 20px;
+    height: auto;
+    width: 300px;
+}
+
+.texte{
+    margin-left: 40px;
+}
+
+.genre{
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.dt-genre{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filled {
+    color: yellow;
+}
+
+.rating{
+    display: flex;
+}
+
+.note{
+    margin-right: 5px;
+}
+
+.rating{
+    display: flex;
+    justify-content: center;
+}
