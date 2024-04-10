@@ -1,0 +1,31 @@
+<div class="container" *ngIf="media"> 
+    <app-header></app-header>
+    <div class="body">
+        <img class="img" *ngIf="media.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + media.poster_path" alt="{{ media.title }}" >
+        <div class="texte">
+            <h3>{{ type === 'movie' ? media.title : media.name }}</h3>
+            <div class="dt-genre">
+                <div>
+                    <p class="dts"> Date de sortie : {{ type === 'movie' ? media.release_date_frmv : media.release_date_frse }}</p>
+                </div>
+                <div class="genre">
+                    <p>Genres : </p>
+                    <p *ngFor="let genre of media.genres" class="genre">  {{genre.name}}</p>
+                </div> 
+                <div class="durée">
+                    <p>Duree : {{ type === 'movie' ? media.runtime : totalRuntime }} minutes</p>
+                </div>
+            </div>
+            <p> {{ media.overview }}</p>
+            
+            <div class="rating">
+                <p class="note">Note global {{ type === 'movie' ? 'du film' : 'de la série'}} : </p>
+                <span *ngFor="let star of 10 | fillArray; let i = index" [ngClass]="{'filled': i < calculateStarFill()}">
+                    <i class="bi bi-star-fill"></i>
+                </span>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

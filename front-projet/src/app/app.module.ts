@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FavorisComponent } from './favoris/favoris.component';
+import { FavorisComponent } from './favoris/favoris.component'
+import { DetailComponent, FillArrayPipe } from './detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { FavorisComponent } from './favoris/favoris.component';
     HomeComponent,
     HeaderComponent,
     FavorisComponent,
+    DetailComponent,
+    FillArrayPipe
   ],
   imports: [
     BrowserModule,
