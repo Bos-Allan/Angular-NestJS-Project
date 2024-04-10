@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Movie } from '../shared/movie.type';
 import { SearchService } from '../header/header.service';
 import { Favoris } from '../shared/favoris.type';
@@ -12,7 +13,8 @@ import { Favoris } from '../shared/favoris.type';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   favoris: Favoris[] = [];
-  constructor(private http: HttpClient, private searchService: SearchService) {}
+
+  constructor(private router: Router, private http: HttpClient, private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.searchService.searchResults$.subscribe(results => {
@@ -24,6 +26,14 @@ export class HomeComponent implements OnInit {
 
 
   }
+
+
+  
+  //a voir comment tu veux gerer ca et la route qu'il faut mettre
+  goToDetail(id:string) {
+    this.router.navigate(['favoris']);
+  }
+
 
   getFavoris() {
     this.http.get<any>(`http://localhost:3000/favoris`)

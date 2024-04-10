@@ -1,11 +1,28 @@
-<div class="header">
-    <div class="nomapp"(click)="goToHome()"> Angular App </div>
-    <div class="btnrechercher">
-        <img src="../../assets/loupe.png" class="loupe">
-        <input type="text" placeholder="Rechercher un film" [(ngModel)]="searchQuery" (input)="searchMovieName()">
-    </div>
-    <div class="favoris" (click)="goToFavoris()">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <div class="navbar-brand nomapp" (click)="goToHome()"> TvTime </div> 
+      <button
+        class="navbar-toggler"
+        type="button"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <div class="btnrechercher d-flex justify-content-center">
+              <img src="../../assets/loupe.png" class="loupe">
+              <input type="text" placeholder="Rechercher un film" [(ngModel)]="searchQuery" (input)="searchMovieName()">
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="favoris" (click)="goToFavoris()">
         <img src="../../assets/coeur.png" class="icon">
     </div>
-
-</div>
+    </div>
+  </nav>
