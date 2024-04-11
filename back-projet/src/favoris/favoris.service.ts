@@ -36,9 +36,7 @@ export class FavorisService {
       }
 
       FAVORIS.splice(index, 1);
-      
-        // Ajoutez plus de logs ici si nécessaire
-        return of(null);
+      return of(null);
   
     }
 }
