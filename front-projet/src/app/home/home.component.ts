@@ -11,57 +11,76 @@ import { Favoris } from '../shared/favoris.type';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  allMovies: Movie[] = [];
   movies: Movie[] = [];
   moviesRecherche: Movie[] = [];
   favoris: Favoris[] = [];
   groupsMovie: any[] = [];
   titre = ["Film et series populaires aujourd'hui", "Film d'action", "A Venir", "Les mieux notés"];
   groupsofGroup: any[] = [];
+  hiddenCarousel: boolean = false;
+  searchQuery: string = '';
 
   constructor(private router: Router, private http: HttpClient, private searchService: SearchService) {}
 
   ngOnInit(): void {
-    this.searchMovies('trending/all/day');
-    this.groupMovie(this.groupsMovie);
-    this.groupsofGroup.push(this.groupsMovie);
-    this.groupsMovie = [];
-    this.searchMovies('movie/now_playing');
-    this.groupMovie(this.groupsMovie);
-    this.groupsofGroup.push(this.groupsMovie);
-    this.groupsMovie = [];
-    this.searchMovies('movie/upcoming');
-    this.groupMovie(this.groupsMovie);
-    this.groupsofGroup.push(this.groupsMovie);
-    this.groupsMovie = [];
-    this.searchMovies('movie/top_rated');
-    this.groupMovie(this.groupsMovie);
-    this.groupsofGroup.push(this.groupsMovie);
-    this.groupsMovie = [];
-
-    this.searchService.searchResults$.subscribe(results => {
-      this.movies = results;
-    });
+    this.searchMovieGroup()
+    // this.searchService.searchResults$.subscribe(results => {
+    //   this.movies = results;
+    // });
+    this.getFavoris();
 
   }
 
+  searchMovieGroup(): void {
+    const tabCarousel: string[] = ['trending/all/day', 'movie/now_playing', 'movie/upcoming', 'movie/top_rated'];
+    for(let i = 0; i < tabCarousel.length; i++){
+      this.searchMovies(tabCarousel[i]);
+      this.groupMovie(this.groupsMovie);
+      this.groupsofGroup.push(this.groupsMovie);
+      this.groupsMovie = [];
+    }
+
+  }
+
+  searchMovieName(): void {
+    if (this.searchQuery.trim() !== '') {
+      this.hiddenCarousel = true;
+      this.http.get<any>(`https://api.themoviedb.org/3/search/multi?query=${this.searchQuery}&api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`)
+        .subscribe(response => {
+          if (response.results && response.results.length > 0) {
+            this.movies = response.results;
+          }
+        });
+    } else {
+      this.hiddenCarousel = false;
+      this.searchMovieGroup();
+      location.reload();
+    }
+  }
+
+
+  
   searchMovies(url: string) {
     this.http.get<any>(`https://api.themoviedb.org/3/${url}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`)
       .subscribe(response => {
         if (response.results && response.results.length > 0) {
           this.movies = response.results;
+
         }
       });
+      for(let i = 0; i < this.movies.length; i++){
+      
+        this.allMovies.push(this.movies[i]);
+      }
+
   }
 
 
   groupMovie(moviesGroup: any[]){
-    
     let index = 0;
     let tab = [];
- 
     for (let i = 0; i < this.movies.length ; i++) {
-
-      
       if(index < 6 ){        
         tab.push(this.movies[i]);
         index++;
@@ -78,11 +97,12 @@ export class HomeComponent implements OnInit {
     
   }
 
-  //a voir comment tu veux gerer ca et la route qu'il faut mettre
   goToDetail(id: string, type: string) {
+    if (type === undefined) {
+      type = 'movie';
+    }
     this.router.navigate(['/detail', id, type]); // Utilisez 'navigate' avec les paramètres requis
   }
-
 
   getFavoris() {
     this.http.get<any>(`http://localhost:3000/favoris`)
@@ -91,38 +111,29 @@ export class HomeComponent implements OnInit {
           this.favoris = response; 
         }
       });
-      for(let i = 0; i < this.movies.length; i++){
-        if(this.favoris.find(f => f.id_film === this.movies[i].id)){
-          this.movies[i].isFavoris = true;
+      for(let i = 0; i < this.allMovies.length; i++){
+
+        if(this.favoris.find(f => f.id_film === this.allMovies[i].id)){
+          this.allMovies[i].isFavoris = true;
         }else{
-          this.movies[i].isFavoris = false;
+          this.allMovies[i].isFavoris = false;
         }
       }
   }
 
   addFavoris(id: string) {
     let idfavoris = Math.random().toString(36).substring(2, 15);
-    let index = 0;
-    for (let i = 0; i < this.groupsofGroup[i].length; i++) {
-        index += 1;
-        console.log(this.groupsofGroup[i][index]);
-    }
-    const movie = this.movies.find(m => m.id === id);
-    console.log(movie?.media_type);
+    const movie = this.allMovies.find(m => m.id === id);
     
     this.http.post<any>(`http://localhost:3000/favoris`, { id_favoris: idfavoris, id_film: id , isMovie: movie!.media_type === "movie" ? true : false})
       .subscribe();
+    
       location.reload();
-      
   }
   getFavorisId(idFilm: any): string {
     idFilm = idFilm.toString(); 
-
-    let movie = this.favoris.find(m => m.id_film === idFilm);
-    console.log(movie);
     for (let i = 0; i < this.favoris.length; i++) {
       if (this.favoris[i].id_film.toString() === idFilm.toString()) {
-        console.log(this.favoris[i].id_favoris);
         return this.favoris[i].id_favoris;
       }
     }
@@ -133,7 +144,6 @@ export class HomeComponent implements OnInit {
     this.http.delete<any>(`http://localhost:3000/favoris/${idFavoris}`)
     .subscribe();
     location.reload();
-
   }
 
 }

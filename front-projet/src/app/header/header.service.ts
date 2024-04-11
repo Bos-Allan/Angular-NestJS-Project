@@ -15,8 +15,4 @@ export class SearchService {
   updateSearchResults(results: Movie[]) {
     this.searchResultsSubject.next(results);
   }
-
-  updateSearchResultsCinema(results: Movie[]) {
-    this.searchResultsSubjectCinema.next(results);
-  }
 }
