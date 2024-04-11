@@ -20,7 +20,10 @@ export class HeaderComponent implements OnInit {
   }
 
   goToHome() {
-    this.router.navigate(['home']);
+    const navigationExtras: NavigationExtras = { state: { reload: true } };
+    this.router.navigate(['home'], navigationExtras).then(() => {
+      window.location.reload();
+    });
   }
 
   goToFavoris() {

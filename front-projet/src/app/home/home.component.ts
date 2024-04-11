@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private searchService: SearchService) {}
 
   ngOnInit(): void {
-
     this.searchMovies('trending/all/day');
     this.groupMovie(this.groupsMovie);
     this.groupsofGroup.push(this.groupsMovie);
@@ -50,8 +49,6 @@ export class HomeComponent implements OnInit {
       .subscribe(response => {
         if (response.results && response.results.length > 0) {
           this.movies = response.results;
-          console.log(this.movies);
-          
         }
       });
   }
@@ -105,6 +102,11 @@ export class HomeComponent implements OnInit {
 
   addFavoris(id: string) {
     let idfavoris = Math.random().toString(36).substring(2, 15);
+    let index = 0;
+    for (let i = 0; i < this.groupsofGroup[i].length; i++) {
+        index += 1;
+        console.log(this.groupsofGroup[i][index]);
+    }
     const movie = this.movies.find(m => m.id === id);
     console.log(movie?.media_type);
     
@@ -118,7 +120,6 @@ export class HomeComponent implements OnInit {
 
     let movie = this.favoris.find(m => m.id_film === idFilm);
     console.log(movie);
-    
     for (let i = 0; i < this.favoris.length; i++) {
       if (this.favoris[i].id_film.toString() === idFilm.toString()) {
         console.log(this.favoris[i].id_favoris);
@@ -129,8 +130,6 @@ export class HomeComponent implements OnInit {
   }
 
   deleteFavoris(idFavoris:string) {
-    console.log(idFavoris);
-    
     this.http.delete<any>(`http://localhost:3000/favoris/${idFavoris}`)
     .subscribe();
     location.reload();
