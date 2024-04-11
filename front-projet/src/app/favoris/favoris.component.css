@@ -71,43 +71,12 @@ right: -30px;
 background-color: black;
 }
 
-/*
-@media screen and (max-width: 768px) { 
-  .movie {
-    width: 100%; 
-    display: flex;
-  }
-  .movie img {
-    width: 150px; 
-  }
-  .movie .details {
-    width: 50%;
-  }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .movie {
-    width: calc(50% - 10px);
-    display: flex;
-  }
-  .movie img {
-    width: 150px;
-  }
-  .movie .details {
-    width: calc(50% - 10px);
-  }
+.footer {
+  margin-top: auto;
 }
-
-@media screen and (min-width: 1025px) {
-  .movie {
-    width: calc(33.33% - 10px);
-    display: flex;
-  }
-  .movie img {
-    width: 150px;
-  }
-  .movie .details {
-    width: calc(66.66% - 10px);
-  }
-}
- */

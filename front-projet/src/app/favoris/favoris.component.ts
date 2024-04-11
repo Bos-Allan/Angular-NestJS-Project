@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Favoris } from '../shared/favoris.type';
 import { Movie } from '../shared/movie.type';
+import { Router } from '@angular/router';
 
 
 
@@ -18,13 +19,19 @@ export class FavorisComponent {
   favoris: Favoris[] = [];
   tabIdFavoris: string[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router,private http: HttpClient) {}
 
   ngOnInit(): void {
     this.searchMovie();
   }
 
 
+  goToDetail(id: string, type: string) {
+    if (type === undefined) {
+      type = 'movie';
+    }
+    this.router.navigate(['/detail', id, type]); // Utilisez 'navigate' avec les paramètres requis
+  }
 
   searchMovie() { 
     this.getFavoris();

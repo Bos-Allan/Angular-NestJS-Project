@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   moviesRecherche: Movie[] = [];
   favoris: Favoris[] = [];
   groupsMovie: any[] = [];
-  titre = ["Film et series populaires aujourd'hui", "Film d'action", "A Venir", "Les mieux notés"];
+  titre = ["Film et series populaires aujourd'hui", "Actuellement au Cinéma", "A Venir", "Les mieux notés"];
   groupsofGroup: any[] = [];
   hiddenCarousel: boolean = false;
   searchQuery: string = '';

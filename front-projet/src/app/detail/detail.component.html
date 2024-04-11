@@ -1,6 +1,6 @@
-<div class="container" *ngIf="media"> 
+<div *ngIf="media"> 
     <app-header></app-header>
-    <div class="body">
+    <div class="body container">
         <img class="img" *ngIf="media.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + media.poster_path" alt="{{ media.title }}" >
         <div class="texte">
             <h3>{{ type === 'movie' ? media.title : media.name }}</h3>

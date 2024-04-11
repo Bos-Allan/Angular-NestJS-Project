@@ -42,15 +42,13 @@
         <div class="trending-movies">
             <h4 class=" p-2 h5">Resultats Recherche</h4>   
             <div class="movie-container">
-              <div class="movie-container">
                 <div *ngFor="let movie of movies" class="movie" (click)="goToDetail(movie.id, movie.media_type)">
                     <div class="poster" style="position: relative;">
                       <img class="rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
                       
                       <i (click)="!movie.isFavoris ? addFavoris(movie.id) : deleteFavoris(getFavorisId(movie.id))" [class]="movie.isFavoris ? 'bi bi-heart-fill favoris' : 'bi bi-heart favoris' " ></i>
-                  </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

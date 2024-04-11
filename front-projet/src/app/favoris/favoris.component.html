@@ -5,7 +5,7 @@
             <h4 class=" p-2 h5">Films</h4>   
             <div class="movie-container">
               <div class="movie-container">
-               <div *ngFor="let movie of movies" class="movie" >  <!--(click)="goToDetail(movie.id) -->
+                <div *ngFor="let movie of movies" class="movie" (click)="goToDetail(movie.id, 'movie')"><!--(click)="goToDetail(movie.id) -->
                     <div class="poster" style="position: relative;">
                       <img class="rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
                       
@@ -24,7 +24,7 @@
           <h4 class=" p-2 h5">Series</h4>   
           <div class="movie-container">
             <div class="movie-container">
-             <div *ngFor="let serie of series" class="movie" >  <!--(click)="goToDetail(movie.id) -->
+              <div *ngFor="let serie of series" class="movie" (click)="goToDetail(serie.id, 'tv')">  <!--(click)="goToDetail(movie.id) -->
                   <div class="poster" style="position: relative;">
                     <img class="rounded" *ngIf="serie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + serie.poster_path" alt="{{ serie.title }}">
                     
@@ -38,4 +38,4 @@
 </div>
 
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
