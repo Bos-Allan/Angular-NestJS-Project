@@ -9,7 +9,6 @@
               <div class="poster" style="position: relative;">
                 <div (click)="goToDetail(movie.id, movie.media_type)">
                   <img class="rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
-
                 </div>
                 <i (click)="!movie.isFavoris ? addFavoris(movie.id) : deleteFavoris(getFavorisId(movie.id))" [class]="movie.isFavoris ? 'bi bi-heart-fill favoris' : 'bi bi-heart favoris' " ></i>
               </div>
