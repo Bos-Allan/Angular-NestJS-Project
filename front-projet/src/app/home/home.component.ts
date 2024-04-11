@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   moviesRecherche: Movie[] = [];
   favoris: Favoris[] = [];
   groupsMovie: any[] = [];
-  titre = ["Film et series populaires aujourd'hui", "Actuellement au Cinéma", "A Venir", "Les mieux notés"];
+  titre = ["Film et series populaires aujourd'hui", "Actuellement au Cinéma", "A Venir", "Les mieux notés", "Films d'aventure", "Films de Crime", "Documentaire", "Film d'Animation"];
   groupsofGroup: any[] = [];
   hiddenCarousel: boolean = false;
   searchQuery: string = '';
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchMovieGroup(): void {
-    const tabCarousel: string[] = ['trending/all/day', 'movie/now_playing', 'movie/upcoming', 'movie/top_rated'];
+    const tabCarousel: string[] = ['trending/all/day?', 'movie/now_playing?', 'movie/upcoming?', 'movie/top_rated?', 'discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&with_genres=12', 'discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&with_genres=80', 'discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&with_genres=99', 'discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&with_genres=16'];
     for(let i = 0; i < tabCarousel.length; i++){
       this.searchMovies(tabCarousel[i]);
       this.groupMovie(this.groupsMovie);
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
 
   
   searchMovies(url: string) {
-    this.http.get<any>(`https://api.themoviedb.org/3/${url}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`)
+    this.http.get<any>(`https://api.themoviedb.org/3/${url}&api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`)
       .subscribe(response => {
         if (response.results && response.results.length > 0) {
           this.movies = response.results;
