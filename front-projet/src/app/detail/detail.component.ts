@@ -5,6 +5,7 @@ import { Movie } from '../shared/movie.type';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+//Création d'un pipe pour répéter un élément un certain nombre de fois ici les étoiles de la note global
 @Pipe({
   name: 'fillArray'
 })
@@ -26,7 +27,6 @@ export class DetailComponent {
   type! : string;
   media!: Movie;
   data: any;
-  totalRuntime: number =0;
   trailerKey!: string;
 
 
@@ -54,7 +54,6 @@ export class DetailComponent {
         this.media = data;
         this.media.release_date_frmv = new Date(this.media.release_date).toLocaleDateString('fr-FR');
         this.media.release_date_frse = new Date(this.media.first_air_date).toLocaleDateString('fr-FR');
-        this.calculateTotalRuntime();
 
         if (this.media.videos && this.media.videos.results.length > 0) {
           for (const video of this.media.videos.results) {
@@ -67,17 +66,14 @@ export class DetailComponent {
       console.error('Type de média non pris en charge');
     }
   }
-  
-  calculateTotalRuntime() {
-    return 0
-  }
 
   calculateStarFill() {
     const average = Math.floor(this.media.vote_average);
     return average;
   }
-  
-  getSafeVideoUrl(videoId: string): SafeResourceUrl { //Obligatoire car angular block les vidéo youtube
+
+  //Obligatoire car angular block les vidéos youtube
+  getSafeVideoUrl(videoId: string): SafeResourceUrl { 
     const url = 'https://www.youtube.com/embed/' + videoId;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

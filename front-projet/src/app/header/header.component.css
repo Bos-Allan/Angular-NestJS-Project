@@ -31,27 +31,3 @@
     flex: 1; 
     background-color: #f2f2f2;
 }
-
-/* @media screen and (max-width: 768px) {
-    .header {
-      flex-direction: column; 
-      height: auto;
-    }
-  
-    .nomapp {
-      margin-left: 0;
-      margin-top: 10px; 
-      margin-bottom: 10px;
-    }
-  
-    .favoris {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  
-    .btnrechercher {
-      width:80%; 
-      margin-bottom: 10px; 
-    }
-}
-   */
