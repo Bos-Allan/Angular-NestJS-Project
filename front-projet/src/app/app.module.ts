@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FavorisComponent } from './favoris/favoris.component'
 import { DetailComponent, FillArrayPipe } from './detail/detail.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DetailComponent, FillArrayPipe } from './detail/detail.component';
     HeaderComponent,
     FavorisComponent,
     DetailComponent,
-    FillArrayPipe
+    FillArrayPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

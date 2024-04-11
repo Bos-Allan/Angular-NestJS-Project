@@ -12,8 +12,8 @@
                     <p>Genres : </p>
                     <p *ngFor="let genre of media.genres" class="genre">  {{genre.name}}</p>
                 </div> 
-                <div class="durée">
-                    <p>Duree : {{ type === 'movie' ? media.runtime : totalRuntime }} minutes</p>
+                <div class="duree">
+                    <p>{{ type === 'movie' ? 'Durée : ' + media.runtime + 'minutes' : '' }} </p>
                 </div>
             </div>
             <p> {{ media.overview }}</p>
@@ -24,8 +24,9 @@
                     <i class="bi bi-star-fill"></i>
                 </span>
             </div>
-
-            
+            <div class="video-container">
+                <iframe [src]="getSafeVideoUrl(trailerKey)" frameborder="0" allowfullscreen></iframe>
+              </div>                                     
         </div>
     </div>
 </div>

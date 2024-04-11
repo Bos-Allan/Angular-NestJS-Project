@@ -145,5 +145,4 @@ export class HomeComponent implements OnInit {
     .subscribe();
     location.reload();
   }
-
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from '../shared/movie.type';
 import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Pipe({
   name: 'fillArray'
@@ -26,8 +27,10 @@ export class DetailComponent {
   media!: Movie;
   data: any;
   totalRuntime: number =0;
+  trailerKey!: string;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -41,9 +44,9 @@ export class DetailComponent {
     let apiUrl: string ='';
 
     if (this.type === 'movie') {
-      apiUrl = `https://api.themoviedb.org/3/movie/${this.id}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`;
+      apiUrl = `https://api.themoviedb.org/3/movie/${this.id}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR&append_to_response=videos`;
     } else if (this.type === 'tv') {
-      apiUrl = `https://api.themoviedb.org/3/tv/${this.id}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`;
+      apiUrl = `https://api.themoviedb.org/3/tv/${this.id}?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR&append_to_response=videos`;
     }
 
     if (apiUrl) {
@@ -52,15 +55,19 @@ export class DetailComponent {
         this.media.release_date_frmv = new Date(this.media.release_date).toLocaleDateString('fr-FR');
         this.media.release_date_frse = new Date(this.media.first_air_date).toLocaleDateString('fr-FR');
         this.calculateTotalRuntime();
+
+        if (this.media.videos && this.media.videos.results.length > 0) {
+          for (const video of this.media.videos.results) {
+              this.trailerKey = video.key;
+              break;
+          }
+      }
       });
     } else {
       console.error('Type de média non pris en charge');
     }
   }
   
-  //https://api.themoviedb.org/3/movie/$this.id}/credits?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR
-  //https://api.themoviedb.org/3/tv/$this.id}/credits?api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR
-
   calculateTotalRuntime() {
     return 0
   }
@@ -70,4 +77,8 @@ export class DetailComponent {
     return average;
   }
   
+  getSafeVideoUrl(videoId: string): SafeResourceUrl { //Obligatoire car angular block les vidéo youtube
+    const url = 'https://www.youtube.com/embed/' + videoId;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }

@@ -17,18 +17,15 @@ export type Movie = {
     created_by:{
       name:string
     }
-
-    episodes: Episode[];
+    videos:{
+      results:{
+        official : string
+        type : string
+        key: string
+        name: string
+      }[]
+    }
     isFavoris: boolean;
 
     vote_average: number
 }
-
-export type Episode = {
-  id: number;
-  name: string;
-  episode_number: number;
-  season_number: number;
-  runtime: number; 
-}
-  
