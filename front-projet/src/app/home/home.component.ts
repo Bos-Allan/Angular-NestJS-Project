@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie } from '../shared/movie.type';
-import { SearchService } from '../header/header.service';
 import { Favoris } from '../shared/favoris.type'; 
 
 @Component({
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit {
   hiddenCarousel: boolean = false;
   searchQuery: string = '';
 
-  constructor(private router: Router, private http: HttpClient, private searchService: SearchService) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.searchMovieGroup()
@@ -37,7 +36,6 @@ export class HomeComponent implements OnInit {
       this.groupsofGroup.push(this.groupsMovie);
       this.groupsMovie = [];
     }
-
   }
 
   searchMovieName(): void {
@@ -55,8 +53,6 @@ export class HomeComponent implements OnInit {
       location.reload();
     }
   }
-
-
   
   searchMovies(url: string) {
     this.http.get<any>(`https://api.themoviedb.org/3/${url}&api_key=fd12b26e656b74c2cdee344670e2e913&language=fr-FR`)
@@ -72,7 +68,6 @@ export class HomeComponent implements OnInit {
       }
 
   }
-
 
   groupMovie(moviesGroup: any[]){
     let index = 0;

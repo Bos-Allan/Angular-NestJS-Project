@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from '../shared/movie.type';
-import { SearchService } from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +12,10 @@ export class HeaderComponent implements OnInit {
   searchQuery: string = '';
   movies: Movie[] = [];
 
-  constructor(private router: Router, private http: HttpClient, private searchService: SearchService) {}
+  constructor(private router: Router, private http: HttpClient) {}
   
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
+  
   goToHome() {
     const navigationExtras: NavigationExtras = { state: { reload: true } };
     this.router.navigate(['home'], navigationExtras).then(() => {

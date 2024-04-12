@@ -1,67 +1,52 @@
-/* Pour la section .body */
-
 .body {
     display: flex;
-    flex-wrap: wrap; /* Permet aux éléments flexibles de passer à la ligne lorsque l'espace est insuffisant */
+    flex-wrap: wrap; 
     padding: 10px;
-  }
+}
   
-  /* Pour l'image */
-
 .img {
   border-radius: 20px;
-  max-width: 90%; /* Réduire légèrement la largeur maximale de l'image */
-  height: auto; /* Permet à l'image de conserver son ratio d'aspect */
-  margin: 0 auto; /* Centre l'image horizontalement */
+  max-width: 90%;
+  height: auto; 
+  margin: 0 auto;
 }
 
+.texte {
+  margin-left: 20px;
+  flex: 1; 
+}
   
-  /* Pour le texte */
+.genre {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5px;
+  margin-right: 5px;
+}
   
-  .texte {
-    margin-left: 20px; /* Ajustez selon vos préférences */
-    flex: 1; /* Pour que le texte prenne l'espace disponible restant */
-  }
+.dt-genre {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
   
-  /* Pour les genres */
+.rating {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
   
-  .genre {
-    display: flex;
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne lorsque l'espace est insuffisant */
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
   
-  /* Pour la section dt-genre */
-  
-  .dt-genre {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne lorsque l'espace est insuffisant */
-    justify-content: space-between;
-  }
-  
-  /* Pour les étoiles de notation */
-  
-  .rating {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px; /* Ajustez selon vos préférences */
-  }
-  
-  /* Pour la vidéo */
-  
-  .video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Ratio d'aspect pour une vidéo 16:9 */
-  }
-  
-  .video-container iframe {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
 .filled {
     color: yellow;
