@@ -2,7 +2,7 @@
 BOSQET Allan
 KNOFFEL Xavier
 
-Lien de l'api utiliser :
+Lien de l'api utilisée :
   - https://developer.themoviedb.org/reference/intro/getting-started
 
 A installer
