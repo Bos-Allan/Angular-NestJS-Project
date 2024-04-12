@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   moviesRecherche: Movie[] = [];
   favoris: Favoris[] = [];
   groupsMovie: any[] = [];
-  titre = ["Film et series populaires aujourd'hui", "Actuellement au Cinéma", "A Venir", "Les mieux notés", "Films d'aventure", "Films de Crime", "Documentaire", "Film d'Animation"];
+  titre = ["Films et series populaires aujourd'hui", "Actuellement au Cinéma", "A Venir", "Les mieux notés", "Films d'aventure", "Films de Crime", "Documentaire", "Film d'Animation"];
   groupsofGroup: any[] = [];
   hiddenCarousel: boolean = false;
   searchQuery: string = '';
@@ -25,9 +25,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchMovieGroup()
-    // this.searchService.searchResults$.subscribe(results => {
-    //   this.movies = results;
-    // });
     this.getFavoris();
 
   }
@@ -101,7 +98,7 @@ export class HomeComponent implements OnInit {
     if (type === undefined) {
       type = 'movie';
     }
-    this.router.navigate(['/detail', id, type]); // Utilisez 'navigate' avec les paramètres requis
+    this.router.navigate(['/detail', id, type]); 
   }
 
   getFavoris() {
